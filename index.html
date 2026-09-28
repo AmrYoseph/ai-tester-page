@@ -89,14 +89,14 @@
   .ch button { align-self: flex-start; font: 600 14px var(--body); background: var(--accent-soft); color: var(--accent); border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; min-height: 40px; }
   footer { padding-block: 32px 48px; font-size: 14px; color: var(--soft); border-top: 1px solid var(--line); }
 
-  [lang-ar] { display: none; }
-  html[lang="ar"] [lang-ar] { display: revert; }
-  html[lang="ar"] [lang-en] { display: none; }
+  [lang-ar] { display: none !important; }
+  html[lang="ar"] [lang-ar] { display: revert !important; }
+  html[lang="ar"] [lang-en] { display: none !important; }
   html[lang="ar"] body { font-size: 17px; }
   html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.25; }
 
   /* Feature details: one collapsible block per topic */
-  .acc { display: flex; flex-direction: column; gap: 10px; }
+  .acc details + details { margin-top: 10px; }
   .acc details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 4px 20px; }
   .acc summary { cursor: pointer; font: 700 19px var(--display); padding-block: 14px; list-style-position: inside; }
   .acc details[open] { padding-bottom: 16px; }
