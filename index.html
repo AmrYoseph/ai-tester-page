@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="AI Tester: your user stories tested by AI in a real browser. Request a quote or get your first scan free.">
+<title>AI Tester</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  :root {
+    --paper: #f5f6f3; --card: #ffffff; --ink: #16181d; --soft: #555a66; --line: #dfe2dc;
+    --accent: #2451b8; --accent-ink: #ffffff; --accent-soft: #e6ecfa;
+    --pass: #1f7a51; --fail: #b1302a; --block: #8f6210;
+    --display: "Bricolage Grotesque", "IBM Plex Sans Arabic", system-ui, sans-serif;
+    --body: "Source Sans 3", "IBM Plex Sans Arabic", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #101216; --card: #171a20; --ink: #eceef2; --soft: #a3a9b5; --line: #2a2f38;
+      --accent: #7ea2ff; --accent-ink: #0c1020; --accent-soft: #1b2440;
+      --pass: #5fd49a; --fail: #ff8a80; --block: #f2b65e; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #101216; --card: #171a20; --ink: #eceef2; --soft: #a3a9b5; --line: #2a2f38;
+    --accent: #7ea2ff; --accent-ink: #0c1020; --accent-soft: #1b2440;
+    --pass: #5fd49a; --fail: #ff8a80; --block: #f2b65e; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.6 var(--body); padding-inline: 20px; }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  a { color: var(--accent); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+
+  nav { display: flex; align-items: center; gap: 16px; padding-block: 22px; }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 22px; flex: 1; }
+  .brand span { font-family: var(--mono); font-size: 13px; color: var(--soft); margin-inline-start: 8px; font-weight: 500; }
+  .lang { font: 600 15px var(--body); background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 8px 16px; cursor: pointer; min-height: 44px; }
+  .cta { display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; }
+
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; padding-block: 36px 64px; }
+  .hero h1 { font-size: clamp(38px, 5.4vw, 62px); line-height: 1.04; letter-spacing: -.02em; }
+  .hero p { color: var(--soft); max-width: 34em; margin: 20px 0 28px; }
+  .hero .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .hero .free { font-size: 15px; color: var(--soft); }
+
+  /* A sample run report: the thing the service delivers. */
+  .report { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px; box-shadow: 0 18px 50px -24px rgba(20, 30, 60, .35); }
+  .report .head { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; color: var(--soft); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .report .head b { color: var(--ink); font-family: var(--display); font-size: 16px; }
+  .bar { display: flex; gap: 3px; height: 10px; border-radius: 5px; overflow: hidden; margin: 14px 0 6px; }
+  .bar i { display: block; }
+  .tc { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 12px; padding: 12px 2px; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .tc:last-child { border-bottom: 0; }
+  .tc code { font: 500 12px var(--mono); color: var(--soft); direction: ltr; }
+  .tc .t { font-weight: 600; font-size: 16px; }
+  .tc .why { grid-column: 2 / 4; font-size: 14px; color: var(--soft); }
+  .st { font: 600 13px var(--body); padding: 2px 10px; border-radius: 999px; border: 1.5px solid currentColor; }
+  .pass { color: var(--pass); } .fail { color: var(--fail); } .block { color: var(--block); }
+  .report .foot { font-size: 12px; color: var(--soft); margin-top: 8px; }
+
+  section { padding-block: 56px; border-top: 1px solid var(--line); }
+  section > h2 { font-size: clamp(28px, 3.4vw, 38px); margin-bottom: 28px; }
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; list-style: none; padding: 0; margin: 0; counter-reset: s; }
+  .steps li { counter-increment: s; }
+  .steps li::before { content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font: 700 18px var(--display); margin-bottom: 14px; }
+  .steps h3 { font-size: 21px; margin-bottom: 6px; }
+  .steps p, .feat p, .offer p { margin: 0; color: var(--soft); }
+
+  .video { margin-top: 36px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: #000; }
+  .video video { display: block; width: 100%; height: auto; }
+
+  .feat { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 40px; }
+  .feat h3 { font-size: 19px; margin-bottom: 4px; }
+
+  .offers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .offer { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 10px; }
+  .offer h3 { font-size: 24px; }
+  .offer ul { margin: 6px 0 0; padding-inline-start: 20px; color: var(--soft); }
+  .offer .price { margin-top: auto; padding-top: 14px; font-weight: 600; }
+  .note { margin-top: 22px; font-size: 15px; color: var(--soft); }
+
+  .contact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .ch { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .ch .lbl { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--soft); }
+  .ch .val { font: 500 16px var(--mono); direction: ltr; unicode-bidi: plaintext; word-break: break-all; user-select: all; }
+  .ch button { align-self: flex-start; font: 600 14px var(--body); background: var(--accent-soft); color: var(--accent); border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; min-height: 40px; }
+  footer { padding-block: 32px 48px; font-size: 14px; color: var(--soft); border-top: 1px solid var(--line); }
+
+  [lang-ar] { display: none; }
+  html[lang="ar"] [lang-ar] { display: revert; }
+  html[lang="ar"] [lang-en] { display: none; }
+  html[lang="ar"] body { font-size: 17px; }
+  html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.25; }
+
+  .brand, .cta { white-space: nowrap; }
+  @media (max-width: 560px) { nav .cta { display: none; } }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 32px; padding-block: 16px 48px; }
+    .steps, .feat, .offers, .contact { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .cta, .lang, .ch button { transition: filter .15s; } .cta:hover { filter: brightness(1.08); } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="brand">AI Tester<span>QA</span></div>
+    <button class="lang" id="langBtn" type="button"><span lang-en>العربية</span><span lang-ar>English</span></button>
+    <a class="cta" href="#contact"><span lang-en>Request a quote</span><span lang-ar>اطلب عرض سعر</span></a>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <h1><span lang-en>Your user stories, tested by AI in a real browser.</span><span lang-ar>الـ user stories بتاعتك، بيختبرها الـ AI في متصفح حقيقي.</span></h1>
+      <p><span lang-en>Send the link to your site and the story or acceptance criteria. AI writes every scenario — happy paths, errors, edge cases — runs each one in Chrome, and sends you the results: what passed, what failed, and exactly why.</span><span lang-ar>ابعت لينك موقعك والـ story أو الـ acceptance criteria. الـ AI بيكتب كل السيناريوهات (الطبيعي، والأخطاء، والحالات الحدّية)، ويشغّل كل واحد في Chrome، ويبعتلك النتيجة: إيه اللي نجح، وإيه اللي فشل، وليه بالظبط.</span></p>
+      <div class="row">
+        <a class="cta" href="#contact"><span lang-en>Get your first scan free</span><span lang-ar>أول فحص مجانًا</span></a>
+        <span class="free"><span lang-en>No setup on your side.</span><span lang-ar>من غير أي تجهيز عندك.</span></span>
+      </div>
+    </div>
+
+    <figure class="report" aria-label="Example run report">
+      <div class="head"><b><span lang-en>Run report</span><span lang-ar>تقرير التشغيل</span></b><span dir="ltr">Story · 3 acceptance criteria</span></div>
+      <div class="bar" aria-hidden="true"><i style="width:66%;background:var(--pass)"></i><i style="width:34%;background:var(--fail)"></i></div>
+      <div class="tc"><code>TC-001</code><span class="t"><span lang-en>Wrong password shows an error</span><span lang-ar>باسورد غلط بيطلّع رسالة خطأ</span></span><span class="st pass">Passed</span>
+        <span class="why"><span lang-en>"Invalid email or password" shown; still on /login.</span><span lang-ar>ظهرت "Invalid email or password" وفضل على /login.</span></span></div>
+      <div class="tc"><code>TC-002</code><span class="t"><span lang-en>Orders page lists order 1001</span><span lang-ar>صفحة الأوردرات فيها أوردر 1001</span></span><span class="st pass">Passed</span>
+        <span class="why"><span lang-en>Order 1001 is in the table.</span><span lang-ar>أوردر 1001 موجود في الجدول.</span></span></div>
+      <div class="tc"><code>TC-003</code><span class="t"><span lang-en>Upload a profile picture</span><span lang-ar>رفع صورة البروفايل</span></span><span class="st fail">Failed</span>
+        <span class="why"><span lang-en>The file is accepted, but the picture never appears on the profile.</span><span lang-ar>الملف بيتقبل، بس الصورة عمرها ما بتظهر في البروفايل.</span></span></div>
+      <figcaption class="foot"><span lang-en>Example from our demo site.</span><span lang-ar>مثال من الموقع التجريبي.</span></figcaption>
+    </figure>
+  </header>
+
+  <section>
+    <h2><span lang-en>How it works</span><span lang-ar>بيشتغل إزاي</span></h2>
+    <ol class="steps">
+      <li><h3><span lang-en>You send the story</span><span lang-ar>تبعت الـ story</span></h3><p><span lang-en>A user story, acceptance criteria, a Jira ticket, or designs and Excel files. A test login if pages need one.</span><span lang-ar>user story، أو acceptance criteria، أو تذكرة Jira، أو تصميمات وملفات Excel. ومعاهم حساب تجريبي لو الصفحات محتاجة login.</span></p></li>
+      <li><h3><span lang-en>AI writes and runs the tests</span><span lang-ar>الـ AI يكتب التستات ويشغّلها</span></h3><p><span lang-en>Every requirement gets its positive, negative and edge cases, run step by step in a real browser. Results are checked by the browser, not just the AI.</span><span lang-ar>كل requirement بياخد الحالات الإيجابية والسلبية والحدّية، وبتتشغل خطوة بخطوة في متصفح حقيقي. والنتيجة بيتأكد منها المتصفح، مش الـ AI بس.</span></p></li>
+      <li><h3><span lang-en>You get the report</span><span lang-ar>بيوصلك التقرير</span></h3><p><span lang-en>Excel and PDF by email: steps, expected vs. actual, screenshots and video of failures. Bugs can go straight to Jira or Azure DevOps.</span><span lang-ar>Excel وPDF على الإيميل: الخطوات، والمتوقع قصاد اللي حصل، وصور وفيديو للتستات اللي فشلت. والـ bugs ممكن تتفتح على طول في Jira أو Azure DevOps.</span></p></li>
+    </ol>
+    <div class="video" id="videoBox" hidden>
+      <video id="demoVideo" controls preload="metadata" playsinline aria-label="AI Tester demo"></video>
+    </div>
+  </section>
+
+  <section>
+    <h2><span lang-en>What you get</span><span lang-ar>هتاخد إيه</span></h2>
+    <div class="feat">
+      <div><h3><span lang-en>Coverage you can check</span><span lang-ar>تغطية تقدر تراجعها</span></h3><p><span lang-en>Each test lists the requirement it covers, so gaps are visible before release.</span><span lang-ar>كل تست مكتوب جنبه الـ requirement اللي بيغطيه، فالناقص بيبان قبل الـ release.</span></p></div>
+      <div><h3><span lang-en>Regression without extra cost</span><span lang-ar>Regression من غير تكلفة زيادة</span></h3><p><span lang-en>Tests that pass are recorded and replayed without AI after every update — fast and repeatable.</span><span lang-ar>التستات اللي بتنجح بتتسجّل، وبتتعاد من غير AI بعد كل تحديث، بسرعة وبنفس النتيجة كل مرة.</span></p></div>
+      <div><h3><span lang-en>Accessibility checks</span><span lang-ar>فحص الـ Accessibility</span></h3><p><span lang-en>Automatic WCAG 2 A/AA audits (axe-core) on the pages under test.</span><span lang-ar>فحص أوتوماتيك لـ WCAG 2 A/AA بـ axe-core على الصفحات اللي بتتختبر.</span></p></div>
+      <div><h3><span lang-en>Arabic and English</span><span lang-ar>عربي وإنجليزي</span></h3><p><span lang-en>Tests and reports in either language, and right-to-left sites handled properly.</span><span lang-ar>التستات والتقارير بأي لغة من الاتنين، والمواقع اللي من اليمين للشمال بتتعامل صح.</span></p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span lang-en>Ways to work together</span><span lang-ar>طرق الشغل</span></h2>
+    <div class="offers">
+      <div class="offer">
+        <h3><span lang-en>One-time scan</span><span lang-ar>فحص مرة واحدة</span></h3>
+        <p><span lang-en>Before a launch or a big release.</span><span lang-ar>قبل إطلاق الموقع أو release كبير.</span></p>
+        <ul>
+          <li><span lang-en>Full site scan or specific stories</span><span lang-ar>فحص الموقع كامل أو stories معينة</span></li>
+          <li><span lang-en>Issues list and test cases (Excel + PDF)</span><span lang-ar>قايمة المشاكل والتستات (Excel + PDF)</span></li>
+          <li><span lang-en>A walkthrough call on the results</span><span lang-ar>مكالمة نراجع فيها النتايج</span></li>
+        </ul>
+        <a class="price" href="#contact"><span lang-en>Request a quote →</span><span lang-ar>اطلب عرض سعر ←</span></a>
+      </div>
+      <div class="offer">
+        <h3><span lang-en>Monthly regression</span><span lang-ar>Regression شهري</span></h3>
+        <p><span lang-en>For teams that ship often.</span><span lang-ar>للفرق اللي بتنزّل تحديثات كتير.</span></p>
+        <ul>
+          <li><span lang-en>A test suite for your site, run on a schedule</span><span lang-ar>test suite لموقعك بتتشغل بمواعيد</span></li>
+          <li><span lang-en>Results by email, Teams or Slack after every run</span><span lang-ar>النتيجة على الإيميل أو Teams أو Slack بعد كل تشغيل</span></li>
+          <li><span lang-en>New tests for every new story</span><span lang-ar>تستات جديدة لكل story جديدة</span></li>
+        </ul>
+        <a class="price" href="#contact"><span lang-en>Request a quote →</span><span lang-ar>اطلب عرض سعر ←</span></a>
+      </div>
+    </div>
+    <p class="note"><span lang-en>We only test sites you own or are authorized to test, preferably a staging environment. Test accounts and data stay private and are never used for anything else.</span><span lang-ar>بنختبر بس المواقع اللي ملكك أو عندك إذن تختبرها، ويفضّل تكون بيئة تجريبية. الحسابات والبيانات التجريبية بتفضل سرية، وعمرها ما بتُستخدم في أي حاجة تانية.</span></p>
+  </section>
+
+  <section id="contact">
+    <h2><span lang-en>Get your first scan free</span><span lang-ar>أول فحص مجانًا</span></h2>
+    <p style="color:var(--soft);margin:-12px 0 24px"><span lang-en>Tell us the site and what you want tested. You get a quote and a free first scan.</span><span lang-ar>قولّنا الموقع وعايز تختبر إيه، وهيوصلك عرض سعر وأول فحص مجانًا.</span></p>
+    <div class="contact">
+      <div class="ch"><span class="lbl"><span lang-en>Email</span><span lang-ar>الإيميل</span></span><span class="val" id="v-email">amr.yoseph@gmail.com</span><button type="button" data-copy="v-email"><span lang-en>Copy</span><span lang-ar>نسخ</span></button></div>
+      <div class="ch"><span class="lbl">WhatsApp</span><span class="val" id="v-wa">+20 109 660 4424</span><a href="https://wa.me/201096604424" target="_blank" rel="noopener"><span lang-en>Open chat on WhatsApp</span><span lang-ar>افتح شات واتساب</span></a><button type="button" data-copy="v-wa"><span lang-en>Copy</span><span lang-ar>نسخ</span></button></div>
+      <div class="ch"><span class="lbl">LinkedIn</span><span class="val" id="v-li">linkedin.com/in/amr-yoseph</span><a href="https://www.linkedin.com/in/amr-yoseph/" target="_blank" rel="noopener"><span lang-en>Message me on LinkedIn</span><span lang-ar>ابعتلي على LinkedIn</span></a><button type="button" data-copy="v-li"><span lang-en>Copy</span><span lang-ar>نسخ</span></button></div>
+    </div>
+  </section>
+
+  <footer><span lang-en>AI Tester — AI-written, browser-verified tests.</span><span lang-ar>AI Tester — تستات بيكتبها الـ AI ويتأكد منها المتصفح.</span></footer>
+</div>
+
+<script>
+  const root = document.documentElement;
+  function setLang(l) {
+    root.lang = l;
+    root.dir = l === "ar" ? "rtl" : "ltr";
+    try { localStorage.setItem("lang", l); } catch {}
+  }
+  let saved = null;
+  try { saved = localStorage.getItem("lang"); } catch {}
+  setLang(saved === "ar" ? "ar" : "en");
+  document.getElementById("langBtn").addEventListener("click", () => setLang(root.lang === "ar" ? "en" : "ar"));
+
+  document.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", async () => {
+    const el = document.getElementById(b.dataset.copy);
+    const done = () => { const old = b.innerHTML; b.textContent = root.lang === "ar" ? "اتنسخ" : "Copied"; setTimeout(() => (b.innerHTML = old), 1500); };
+    try { await navigator.clipboard.writeText(el.textContent.trim()); done(); }
+    catch { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  }));
+
+  // The demo video is published next to the page; show the player only if it is there.
+  const v = document.getElementById("demoVideo");
+  fetch("demo.webm", { method: "HEAD" }).then((r) => { if (r.ok) { v.src = "demo.webm"; document.getElementById("videoBox").hidden = false; } }).catch(() => {});
+</script>
+</body>
+</html>
