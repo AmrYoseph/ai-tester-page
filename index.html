@@ -95,6 +95,20 @@
   html[lang="ar"] body { font-size: 17px; }
   html[lang="ar"] .hero h1 { letter-spacing: 0; line-height: 1.25; }
 
+  /* Feature details: one collapsible block per topic */
+  .acc { display: flex; flex-direction: column; gap: 10px; }
+  .acc details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 4px 20px; }
+  .acc summary { cursor: pointer; font: 700 19px var(--display); padding-block: 14px; list-style-position: inside; }
+  .acc details[open] { padding-bottom: 16px; }
+  .acc h4 { font: 700 16px var(--display); margin: 14px 0 6px; }
+  .acc p, .acc li { color: var(--soft); font-size: 16px; }
+  .acc b { color: var(--ink); }
+  .acc ul, .acc ol { padding-inline-start: 22px; margin: 6px 0; display: flex; flex-direction: column; gap: 4px; }
+  .acc code { font: 500 13px var(--mono); background: var(--accent-soft); color: var(--ink); padding: 1px 6px; border-radius: 6px; direction: ltr; unicode-bidi: isolate; }
+  .acc .tbl { overflow-x: auto; }
+  .acc table { border-collapse: collapse; width: 100%; font-size: 15px; margin: 8px 0; }
+  .acc th, .acc td { border: 1px solid var(--line); padding: 8px 10px; text-align: start; vertical-align: top; }
+  .acc th { background: var(--accent-soft); }
   .brand, .cta { white-space: nowrap; }
   @media (max-width: 560px) { nav .cta { display: none; } }
   @media (max-width: 860px) {
@@ -155,6 +169,324 @@
       <div><h3><span lang-en>Regression without extra cost</span><span lang-ar>Regression من غير تكلفة زيادة</span></h3><p><span lang-en>Tests that pass are recorded and replayed without AI after every update — fast and repeatable.</span><span lang-ar>التستات اللي بتنجح بتتسجّل، وبتتعاد من غير AI بعد كل تحديث، بسرعة وبنفس النتيجة كل مرة.</span></p></div>
       <div><h3><span lang-en>Accessibility checks</span><span lang-ar>فحص الـ Accessibility</span></h3><p><span lang-en>Automatic WCAG 2 A/AA audits (axe-core) on the pages under test.</span><span lang-ar>فحص أوتوماتيك لـ WCAG 2 A/AA بـ axe-core على الصفحات اللي بتتختبر.</span></p></div>
       <div><h3><span lang-en>Arabic and English</span><span lang-ar>عربي وإنجليزي</span></h3><p><span lang-en>Tests and reports in either language, and right-to-left sites handled properly.</span><span lang-ar>التستات والتقارير بأي لغة من الاتنين، والمواقع اللي من اليمين للشمال بتتعامل صح.</span></p></div>
+    </div>
+  </section>
+
+  <section id="details">
+    <h2><span lang-en>All features in detail</span><span lang-ar>كل المميزات بالتفصيل</span></h2>
+
+    <div lang-ar class="acc">
+      <details>
+        <summary>🔍 فحص الموقع</summary>
+        <h4>فحص أوتوماتيك (من غير AI):</h4>
+        <ul>
+          <li>أخطاء JavaScript والـ console، والـ requests اللي فشلت أو رجعت 4xx/5xx.</li>
+          <li>لينكات وصور مكسورة.</li>
+          <li>الـ Responsive: الـ viewport، والـ horizontal scroll على الموبايل.</li>
+          <li>الـ Accessibility: صور من غير alt، وحقول من غير label، وزراير فاضية، والـ lang.</li>
+          <li>الـ SEO: الـ title والـ description والـ h1.</li>
+          <li>الأداء: الصفحات اللي بتاخد أكتر من 3 ثواني.</li>
+          <li>الأمان: HTTPS، والـ security headers، والـ mixed content.</li>
+        </ul>
+        <h4>بالـ AI:</h4>
+        <ul>
+          <li>Test cases لكل صفحة: functional و negative و UI و accessibility و security و usability.</li>
+          <li>Test cases من نوع end-to-end بتمشي على أكتر من صفحة.</li>
+          <li>مشاكل بيشوفها في الـ screenshots (ديسكتوب وموبايل).</li>
+        </ul>
+        <p><b>"كل الصفحات":</b> الأداة بتلف على صفحات الموقع لحد ما متلاقيش صفحات جديدة، وده مفيد للـ regression للسيستم كله.</p>
+        <ul>
+          <li>فيه حد أمان 500 صفحة، وتقدر تغيّره بـ <code>MAX_PAGES</code>.</li>
+          <li>الصفحة اللي ليها نسخ كتير بـ parameters مختلفة (زي <code>?page=1</code>، <code>?page=2</code>) بتتفحص 5 مرات بس.</li>
+          <li>الأداة بتتجاهل لينكات Log out.</li>
+        </ul>
+        <h4>الملاحظات للـ AI</h4>
+        <p>في صفحة الفحص فيه خانة ملاحظات، وليها وضعين:</p>
+        <ul>
+          <li><b>استخدمها كسياق:</b> الـ AI بيكتب ويشغّل تستات مركّزة على ملاحظاتك، زي acceptance criteria أو بيانات تجريبية.</li>
+          <li><b>شغّل التستات اللي كتبتها بس:</b> بتكتب الـ test cases بنفسك بأي شكل (ليستة، أو جدول، أو Gherkin)، والـ AI بيحوّلها لخطوات ويشغّلها من غير ما يزوّد عليها.</li>
+        </ul>
+        <p>متكتبش باسوردات في الملاحظات، لأنها بتتحفظ مع التقرير.</p>
+      </details>
+
+      <details>
+        <summary>📋 اختبار المتطلبات</summary>
+        <ol>
+          <li>اكتب لينك الموقع، وسجّل دخول لو محتاج.</li>
+          <li>اكتب في خانة المتطلبات الـ Epic أو الـ user story أو وصف التاسك أو الـ acceptance criteria.</li>
+          <li>دوس <b>اكتب التستات وشغّلها</b>.</li>
+        </ol>
+        <p>الأداة بعد كده:</p>
+        <ul>
+          <li>بتسيب الفحص الأوتوماتيك خالص، وبتلف على الصفحات بس عشان تعرف شكل الموقع.</li>
+          <li><b>خريطة الموقع المحفوظة:</b> أول مرة بتلف على الموقع، بتحفظ الصفحات اللي لقتها. المرات اللي بعد كده بتبدأ التستات على طول من غير لف. لو الموقع اتغير، علّم على 🔄 لف على الموقع من جديد.</li>
+          <li><b>لف موجّه:</b> لما بتلف، بتبدأ بالصفحات اللي فيها كلمات من المتطلبات (في اللينك أو في نص اللينك). وبتبعت للـ AI أهم 40 صفحة بس.</li>
+          <li>الـ AI بيقسّم الكلام لمتطلبات مترقمة (REQ-1، REQ-2…)، وبيكتب لكل متطلب الحالة الناجحة والحالات السلبية والحدية، ومعاها سيناريوهات end-to-end.</li>
+          <li>بتشغّل التستات، وتطلّع جدول 📋 <b>تغطية المتطلبات</b>: كل متطلب قدامه التستات اللي بتغطيه وحالته (نجح / فشل / مش مكتمل / مش متغطي).</li>
+        </ul>
+        <h4>📎 ملفات مع المتطلبات</h4>
+        <p>تقدر ترفق ملفات مع المتطلبات بزرار 📎 إرفاق ملفات، أو تسحب الملف وتسيبه على الخانة، أو تلزق صورة فيها (Ctrl+V):</p>
+        <ul>
+          <li><b>الصور</b> (زي التصميمات والـ screenshots والـ diagrams): الـ AI بيشوفها بنفسه.</li>
+          <li><b>Excel (xlsx) وPDF وWord (docx) وCSV والملفات النصية:</b> البرنامج بيطلّع المكتوب فيها ويبعته للـ AI كجزء من المتطلبات.</li>
+        </ul>
+        <p>الملفات بتتحفظ في فولدر <code>uploads/</code> على جهازك، ومش بتترفع على git. وأقصى حجم للملف 25 ميجا.</p>
+        <h4>🔗 من Jira أو Azure DevOps</h4>
+        <p>لو ربطت البرنامج بـ Jira أو Azure DevOps (شوف "الربط" تحت)، هتلاقي خانة رقم الـ story فوق خانة المتطلبات. تكتب رقم الـ story، زي <code>PROJ-123</code> في Jira أو <code>4567</code> في Azure DevOps، وتدوس ⬇ اسحب المتطلبات. البرنامج بيجيب العنوان والوصف والـ acceptance criteria ويحطهم في الخانة. وأي bug يتفتح من الاختبار ده بيترتبط بالـ story.</p>
+      </details>
+
+      <details>
+        <summary>📄 التقرير</summary>
+        <ul>
+          <li><b>فوق:</b> حالة الاختبار، والـ AI اللي اشتغل، وحالة تسجيل الدخول، وزرار ⏹ إيقاف، وزرار ＋ اختبار جديد.</li>
+          <li><b>⏳ الوقت الفاضل:</b> عداد تنازلي بيحسب من التستات اللي خلصت. في "كل الصفحات" بيعرض عدد الصفحات اللي وصلها لحد ما التستات تبدأ.</li>
+          <li><b>الأرقام:</b> الصفحات، والمشاكل، وCritical/High، والـ test cases، وPassed، وFailed، والـ tokens، والتكلفة التقريبية.</li>
+          <li><b>التابات:</b> Test Cases، وIssues، وPages، ومعاها فلاتر وبحث.</li>
+          <li><b>📄 عرض التقرير:</b> بيفتح التقرير منظّم في popup، وتقدر تطبعه أو تحمّله.</li>
+          <li><b>التصدير:</b> CSV (بيفتح في Excel ويدعم العربي، وفيه عمود Actual results)، وMarkdown، وJSON.</li>
+          <li><b>⏹ إيقاف:</b> الاختبار بيخلّص الخطوة اللي شغال فيها، ويحتفظ باللي خلص.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>✅ نتايج التستات</summary>
+        <div class="tbl"><table>
+          <tr><th>النتيجة</th><th>معناها</th></tr>
+          <tr><td>Passed</td><td>اتنفذت كل الخطوات والنتيجة طلعت زي المتوقع</td></tr>
+          <tr><td>Failed</td><td>الموقع عمل حاجة غير المتوقع. بيتضاف كمان لقايمة المشاكل ومعاه الخطوات</td></tr>
+          <tr><td>Blocked</td><td>ماينفعش يتنفذ هنا: بيانات مش موجودة، أو captcha، أو إرسال فورم في الوضع الآمن، أو صلاحيات</td></tr>
+          <tr><td>Flaky</td><td>فشل أول مرة ونجح في المرة التانية: غالباً مشكلة توقيت أو تحميل، مش بج ثابت</td></tr>
+          <tr><td>Not run</td><td>ما اتنفذش: التشغيل مقفول، أو اتوقف، أو الموقع ما ردش، أو الـ AI رجّع خطأ</td></tr>
+        </table></div>
+        <p>كل تست معاه screenshot لآخر خطوة، وسجل بالخطوات اللي اتنفذت.</p>
+      </details>
+
+      <details>
+        <summary>🎯 إزاي البرنامج بيقلل النتايج الغلط</summary>
+        <ul>
+          <li><b>الحكم مش بكلمة الـ AI بس:</b> لما الـ AI يخلص تست، بيكتب شروط للنتيجة المتوقعة، زي "النص X ظاهر" أو "اللينك فيه /dashboard". المتصفح بيتأكد منها بنفسه، والشروط دي بتظهر تحت كل تست في "🔎 الشروط اللي البرنامج اتأكد منها".
+            <ul>
+              <li><b>✔ متأكد بالشروط:</b> حكم الـ AI والشروط متفقين.</li>
+              <li><b>⚖ اتراجع:</b> مش متفقين، أو مفيش شروط تتفحص. هنا الـ AI بيراجع الحكم بنظرة تانية أدق، وبيبص على الـ screenshot الأخيرة ونتيجة الشروط، والحكم ده هو النهائي. تقدر تخلي خدمة تانية هي اللي تراجع بـ <code>JUDGE_PROVIDER</code> (مثلاً <code>JUDGE_PROVIDER=gemini</code>).</li>
+              <li><b>⚠ مش متأكد:</b> المراجعة ما اشتغلتش (مثلاً الـ AI مش متاح)، فالحكم فضل زي ما الـ AI قاله.</li>
+            </ul>
+          </li>
+          <li><b>التست اللي فشل بيتعاد مرة:</b> لو نجح في المرة التانية بيتعلّم Flaky 🔁 بدل Failed، ومش بيتحسب bug. ونفس الكلام في الـ Test suites، وفيه زرار "أعد تشغيل الـ Flaky".</li>
+          <li><b>يستنى الصفحة تجهز:</b> قبل ما يحكم، بيستنى التحميل والـ network يهدى، وأي spinner أو skeleton أو progress bar يختفي، وبيستنى الصفحة تبطّل تتغير.</li>
+          <li><b>❌ النتيجة دي غلط:</b> زرار تحت كل تست في التقرير، وتقدر تكتب معاه إيه الغلط. الموقع بيفتكره، والـ AI بياخده في الاعتبار في المرات الجاية. وفي الأرقام فوق التقرير بيظهر دقة الـ AI، يعني نسبة التستات اللي ما اتعلّمش عليها إنها غلط.</li>
+          <li><b>🧪 بيانات تجريبية:</b> خانة في الفورم وفي إعدادات تشغيل الـ suite، تكتب فيها يوزرز بصلاحيات مختلفة وأكواد وقيم. بتتحفظ لكل موقع في فولدر <code>.testdata/</code> على جهازك (مش في التقارير ولا على git)، وبتتملى لوحدها لما تختار نفس الموقع تاني. حسابات تجريبية بس.</li>
+          <li><b>📎 ملفات:</b> تقدر ترفق ملفات بنفس الطريقة، زي Excel فيه يوزرز، أو صور وPDF للرفع. الـ AI بيقرا اللي فيها، وكمان بيقدر يرفعها في خانات رفع الملفات على الموقع، حتى لو الخانة مخفية ورا زرار. والتستات المتسجلة بترفع نفس الملف في الـ replay. الملفات دي بتتحفظ للموقع، والـ suites بتستخدمها.</li>
+        </ul>
+        <p>حكم الـ AI ممكن يغلط برضه، فراجع الـ Failed قبل ما تفتح bug، واستخدم زرار "النتيجة دي غلط".</p>
+      </details>
+
+      <details>
+        <summary>🎬 فيديو وTrace لكل تست</summary>
+        <p>كل تست بيتسجّله فيديو وPlaywright Trace. الـ Trace بيوريك كل خطوة: شكل الصفحة، والـ DOM، والـ network، والـ console.</p>
+        <ul>
+          <li>الفيديو بيشتغل جوه التقرير على طول. والـ Trace بتحمّله وتفتحه على trace.playwright.dev (الملف بيفتح على جهازك ومش بيترفع)، أو بالأمر <code>npx playwright show-trace</code>.</li>
+          <li>بيتحفظوا للتستات اللي ما نجحتش بس (<code>RECORD_EVIDENCE=failed</code>). لو عايزهم لكل التستات حط <code>RECORD_EVIDENCE=all</code>، ولو مش عايزهم خالص حط <code>off</code>.</li>
+          <li>كل تست بيشتغل في نسخة لوحده من الـ session اللي فيها login (cookies وlocalStorage وsessionStorage)، عشان يتسجّل لوحده.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>🐞 bugs في Jira أو Azure DevOps</summary>
+        <p>جنب كل تست Failed فيه زرار 🐞 افتح bug، وفوق التقرير فيه زرار افتح bugs للتستات الفاشلة. الـ bug بيتفتح ومعاه:</p>
+        <ul>
+          <li>الخطوات، والنتيجة المتوقعة، والنتيجة الفعلية.</li>
+          <li>الـ screenshot والفيديو كمرفقات.</li>
+          <li>ربط بالـ story لو الاختبار كان منها.</li>
+        </ul>
+        <p>بعد ما يتفتح، الزرار بيتحول للينك الـ bug.</p>
+      </details>
+
+      <details>
+        <summary>💬 تعليقك للـ AI على كل test case</summary>
+        <p>تحت كل test case فيه خانة تكتب فيها تعليق، زي "استخدم /debug بدل /admin" أو "ضيف خطوة كذا"، ومعاها زرار حفظ التعليق:</p>
+        <ul>
+          <li>التعليق بيتحفظ على مستوى الموقع كله، في <code>reports/site-feedback.json</code>.</li>
+          <li>في أي اختبار بعد كده على نفس الموقع، الـ AI بيقرا كل تعليقاتك ويمشي عليها. والتست اللي بنفس العنوان بياخد التعليق بتاعه.</li>
+          <li>في الـ Test suites: لما تحفظ تعليق على تست، التسجيل القديم بتاعه بيتمسح، والـ AI بيشغّله من جديد وهو ماشي على التعليق.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>⚙️ خيارات التشغيل</summary>
+        <ul>
+          <li><b>الوضع الآمن (الافتراضي):</b> المتصفح بيمنع أي طلب بيغيّر بيانات (POST/PUT/PATCH/DELETE)، وبيقفل زراير الإرسال والحذف والدفع. لو عايز التستات تبعت فورمز، علّم على "السماح بتغيير البيانات"، بس على بيئة تجريبية.</li>
+          <li><b>👀 اعرض المتصفح:</b> بيفتح نافذة Chrome تتفرج فيها على التستات وهي بتتنفذ، وكل خطوة بتتأخر شوية عشان تلحق تتابعها. ممكن تلاقي أكتر من نافذة مع بعض، لأن التستات بتشتغل 3 في نفس الوقت. متقفلش النافذة وهي شغالة.</li>
+          <li><b>الحدود:</b> لحد 1000 test case في الاختبار الواحد (<code>MAX_TESTS</code>).</li>
+          <li><b>عدد التستات اللي بتشتغل مع بعض:</b> حسب الـ AI: Gemini 6، وMistral وGroq 3، وOllama 2. وتقدر تغيّره بـ <code>PARALLEL_TESTS</code>.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>⚡ ليه التستات بقت أسرع</summary>
+        <ul>
+          <li><b>كذا خطوة في طلب واحد:</b> الـ AI بيخطط لحد 4 خطوات مرة واحدة، زي "املى الإيميل، واملى الباسورد، ودوس دخول". ولو الصفحة اتغيرت في النص، الباقي بيتلغي ويبص على الصفحة الجديدة.</li>
+          <li><b>Screenshots أقل:</b> الصورة بتتبعت للـ AI بس لو الصفحة اتغيرت عن الخطوة اللي فاتت.</li>
+          <li><b>توزيع الطلبات على موديلات Gemini:</b> الـ free tier بيسمح بـ 15 طلب في الدقيقة لكل موديل، وكل موديل ليه عدّاد لوحده. البرنامج بيوزّع الطلبات على الموديلات (3.1-flash-lite، ثم 3.5-flash-lite، و3.5-flash، و3.8-flash) في حدود المسموح، بدل ما يستنى الرفض (429) ويتحول لخدمة أبطأ. ولو موديل رد "high demand" بيسيبه 30 ثانية ويكمل بغيره. الحد بيتغير بـ <code>GEMINI_RPM</code>، والبرنامج بيتعلّم الحد الحقيقي من رد Google.</li>
+          <li><b>منع التكرار:</b> لو الصفحة ما اتغيرتش بعد كذا خطوة، الـ AI بيتقاله يحكم على طول بدل ما يكرر. وبيشوف كمان رسايل التحقق بتاعة المتصفح (زي "Please fill out this field").</li>
+        </ul>
+      </details>
+    </div>
+
+    <div lang-en class="acc">
+      <details>
+        <summary>🔍 Site scan</summary>
+        <h4>Automatic checks (no AI):</h4>
+        <ul>
+          <li>JavaScript and console errors, and requests that failed or returned 4xx/5xx.</li>
+          <li>Broken links and images.</li>
+          <li>Responsive: the viewport, and horizontal scrolling on mobile.</li>
+          <li>Accessibility: images without alt, fields without a label, empty buttons, and the page language.</li>
+          <li>SEO: the title, description and h1.</li>
+          <li>Performance: pages that take more than 3 seconds.</li>
+          <li>Security: HTTPS, security headers and mixed content.</li>
+        </ul>
+        <h4>With AI:</h4>
+        <ul>
+          <li>Test cases for every page: functional, negative, UI, accessibility, security and usability.</li>
+          <li>End-to-end test cases that go across several pages.</li>
+          <li>Problems it spots in the screenshots (desktop and mobile).</li>
+        </ul>
+        <p><b>"All pages":</b> the tool keeps crawling the site until it finds no new pages — useful for regression of the whole system.</p>
+        <ul>
+          <li>There is a safety limit of 500 pages, which you can change with <code>MAX_PAGES</code>.</li>
+          <li>A page that has many copies with different parameters (like <code>?page=1</code>, <code>?page=2</code>) is checked only 5 times.</li>
+          <li>The tool skips Log out links.</li>
+        </ul>
+        <h4>Notes for the AI</h4>
+        <p>The scan page has a notes box with two modes:</p>
+        <ul>
+          <li><b>Use as context:</b> the AI writes and runs tests focused on your notes, such as acceptance criteria or test data.</li>
+          <li><b>Run only the tests I wrote:</b> you write the test cases yourself in any format (a list, a table or Gherkin), and the AI turns them into steps and runs them without adding any.</li>
+        </ul>
+        <p>Don't put passwords in the notes: they are saved with the report.</p>
+      </details>
+
+      <details>
+        <summary>📋 Requirements testing</summary>
+        <ol>
+          <li>Enter the site link, and log in if needed.</li>
+          <li>In the requirements box, write the Epic, user story, task description or acceptance criteria.</li>
+          <li>Click <b>Write &amp; run the tests</b>.</li>
+        </ol>
+        <p>The tool then:</p>
+        <ul>
+          <li>Skips the automatic checks entirely and only crawls the pages to learn the site's structure.</li>
+          <li><b>Saved site map:</b> the first time, it saves the pages it found. Later runs start the tests straight away, without crawling. If the site changed, tick 🔄 Crawl the site again.</li>
+          <li><b>Targeted crawl:</b> it starts with the pages whose link or link text contains words from the requirements, and sends only the 40 most relevant pages to the AI.</li>
+          <li>The AI splits the text into numbered requirements (REQ-1, REQ-2…) and writes, for each one, the positive case, the negative and edge cases, plus end-to-end scenarios.</li>
+          <li>It runs the tests and produces a 📋 <b>Requirements coverage</b> table: each requirement with the tests that cover it and its status (passed / failed / incomplete / not covered).</li>
+        </ul>
+        <h4>📎 Files with the requirements</h4>
+        <p>Attach files with the 📎 Attach files button, drop a file on the box, or paste an image into it (Ctrl+V):</p>
+        <ul>
+          <li><b>Images</b> (designs, screenshots, diagrams): the AI looks at them itself.</li>
+          <li><b>Excel (xlsx), PDF, Word (docx), CSV and text files:</b> the text in them is extracted and sent to the AI as part of the requirements.</li>
+        </ul>
+        <p>Files are kept in the <code>uploads/</code> folder on your machine and are never uploaded to git. The maximum file size is 25 MB.</p>
+        <h4>🔗 From Jira or Azure DevOps</h4>
+        <p>With Jira or Azure DevOps connected, a story-number box appears above the requirements. Type the story number, like <code>PROJ-123</code> in Jira or <code>4567</code> in Azure DevOps, and click ⬇ Pull the requirements. The title, description and acceptance criteria are filled in, and any bug opened from this test run is linked to the story.</p>
+      </details>
+
+      <details>
+        <summary>📄 The report</summary>
+        <ul>
+          <li><b>At the top:</b> the run status, the AI that ran it, the login status, a ⏹ Stop button and a ＋ New test button.</li>
+          <li><b>⏳ Time left:</b> a countdown based on the tests already done. With "All pages", it shows how many pages have been reached until the tests start.</li>
+          <li><b>The numbers:</b> pages, issues, Critical/High, test cases, Passed, Failed, tokens and approximate cost.</li>
+          <li><b>Tabs:</b> Test Cases, Issues and Pages, with filters and search.</li>
+          <li><b>📄 View report:</b> opens the report neatly in a popup, to print or download.</li>
+          <li><b>Export:</b> CSV (opens in Excel, supports Arabic, and has an Actual results column), Markdown and JSON.</li>
+          <li><b>⏹ Stop:</b> the run finishes the current step and keeps everything done so far.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>✅ Test results</summary>
+        <div class="tbl"><table>
+          <tr><th>Result</th><th>Meaning</th></tr>
+          <tr><td>Passed</td><td>Every step ran and the result matched what was expected</td></tr>
+          <tr><td>Failed</td><td>The site did something unexpected. It is also added to the issues list, with the steps</td></tr>
+          <tr><td>Blocked</td><td>Can't be run here: missing data, a captcha, a form submit in safe mode, or permissions</td></tr>
+          <tr><td>Flaky</td><td>Failed the first time and passed the second: usually timing or loading, not a stable bug</td></tr>
+          <tr><td>Not run</td><td>Not executed: running was turned off, it was stopped, the site didn't respond, or the AI returned an error</td></tr>
+        </table></div>
+        <p>Every test comes with a screenshot of its last step and a log of the steps it took.</p>
+      </details>
+
+      <details>
+        <summary>🎯 How wrong results are kept down</summary>
+        <ul>
+          <li><b>The verdict isn't just the AI's word:</b> when the AI finishes a test, it writes checks for the expected result, such as "text X is visible" or "the URL contains /dashboard". The browser verifies them itself, and they appear under each test in "🔎 Checks the program verified".
+            <ul>
+              <li><b>✔ Verified by checks:</b> the AI's verdict and the checks agree.</li>
+              <li><b>⚖ Reviewed:</b> they disagree, or there were no checks to run. The AI takes a second, stricter look at the last screenshot and the check results, and that verdict is final. Another service can do the review with <code>JUDGE_PROVIDER</code> (e.g. <code>JUDGE_PROVIDER=gemini</code>).</li>
+              <li><b>⚠ Not verified:</b> the review couldn't run (e.g. the AI was unavailable), so the verdict stays as the AI gave it.</li>
+            </ul>
+          </li>
+          <li><b>A failed test runs once more:</b> if it passes the second time it is marked Flaky 🔁 instead of Failed, and isn't counted as a bug. The same applies in Test suites, which have a "Rerun flaky" button.</li>
+          <li><b>Waits for the page to be ready:</b> before judging, it waits for loading and network activity to settle, for spinners, skeletons and progress bars to disappear, and for the page to stop changing.</li>
+          <li><b>❌ This result is wrong:</b> a button under every test in the report, with room to say what's wrong. The site remembers it and the AI takes it into account next time. The numbers above the report show the AI's accuracy: the share of tests not marked as wrong.</li>
+          <li><b>🧪 Test data:</b> a box in the form and in the suite's run settings for users with different roles, codes and values. It is saved per site in the <code>.testdata/</code> folder on your machine (not in reports or git) and fills in automatically when you pick the same site again. Test accounts only.</li>
+          <li><b>📎 Files:</b> attach files the same way, like an Excel sheet of users, or images and PDFs to upload. The AI reads them and can also upload them into file fields on the site, even when the field is hidden behind a button. Recorded tests upload the same file on replay. The files are kept for the site and used by its suites.</li>
+        </ul>
+        <p>The AI's verdict can still be wrong, so review Failed tests before opening a bug, and use the "This result is wrong" button.</p>
+      </details>
+
+      <details>
+        <summary>🎬 Video and trace for every test</summary>
+        <p>Every test is recorded as a video and a Playwright Trace. The trace shows every step: the page, the DOM, the network and the console.</p>
+        <ul>
+          <li>The video plays right inside the report. Download the trace and open it at trace.playwright.dev (the file opens on your machine and isn't uploaded), or with <code>npx playwright show-trace</code>.</li>
+          <li>They are kept only for tests that didn't pass (<code>RECORD_EVIDENCE=failed</code>). Set <code>RECORD_EVIDENCE=all</code> to keep them for every test, or <code>off</code> for none.</li>
+          <li>Each test runs in its own copy of the logged-in session (cookies, localStorage and sessionStorage), so it can be recorded on its own.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>🐞 Bugs in Jira or Azure DevOps</summary>
+        <p>Next to every Failed test there is a 🐞 Open bug button, and above the report an Open bugs for failed tests button. The bug is opened with:</p>
+        <ul>
+          <li>The steps, the expected result and the actual result.</li>
+          <li>The screenshot and the video as attachments.</li>
+          <li>A link to the story, if the run came from one.</li>
+        </ul>
+        <p>Once it is opened, the button turns into a link to the bug.</p>
+      </details>
+
+      <details>
+        <summary>💬 Your comments to the AI on each test case</summary>
+        <p>Under every test case there is a comment box, e.g. "use /debug instead of /admin" or "add step X", with a Save comment button:</p>
+        <ul>
+          <li>The comment is saved for the whole site, in <code>reports/site-feedback.json</code>.</li>
+          <li>In any later run on the same site, the AI reads all your comments and follows them. A test with the same title gets its own comment.</li>
+          <li>In Test suites: saving a comment on a test deletes its old recording, and the AI runs it again following the comment.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>⚙️ Run options</summary>
+        <ul>
+          <li><b>Safe mode (default):</b> the browser blocks any request that changes data (POST/PUT/PATCH/DELETE) and disables submit, delete and pay buttons. To let tests submit forms, tick "Allow data changes" — on a test environment only.</li>
+          <li><b>👀 Show the browser:</b> opens a Chrome window so you can watch the tests run, with each step slowed down a little to follow. You may see several windows at once, because 3 tests run at the same time. Don't close a window while it runs.</li>
+          <li><b>Limits:</b> up to 1000 test cases per run (<code>MAX_TESTS</code>).</li>
+          <li><b>Tests run at the same time:</b> depends on the AI: Gemini 6, Mistral and Groq 3, Ollama 2. Change it with <code>PARALLEL_TESTS</code>.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>⚡ Why the tests got faster</summary>
+        <ul>
+          <li><b>Several steps per request:</b> the AI plans up to 4 steps at once, like "fill the email, fill the password, click Log in". If the page changes midway, the rest is dropped and it looks at the new page.</li>
+          <li><b>Fewer screenshots:</b> a screenshot is sent to the AI only when the page changed since the previous step.</li>
+          <li><b>Spreading requests over Gemini models:</b> the free tier allows 15 requests per minute per model, and each model has its own count. The program spreads requests over the models (3.1-flash-lite, then 3.5-flash-lite, 3.5-flash and 3.8-flash) within the limit, instead of waiting for a rejection (429) and switching to a slower service. If a model answers "high demand", it is paused for 30 seconds and another is used. Change the limit with <code>GEMINI_RPM</code>; the program learns the real limit from Google's reply.</li>
+          <li><b>No repeating:</b> if the page hasn't changed after several steps, the AI is told to decide right away instead of repeating itself. It also sees the browser's validation messages (like "Please fill out this field").</li>
+        </ul>
+      </details>
     </div>
   </section>
 
