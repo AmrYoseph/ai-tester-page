@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Testopia: AI-powered QA & Business Analysis. Your user stories tested in a real browser, 64 automated checks, smoke tests, performance & load testing, API checks, and zero-cost regression.">
 <title>Testopia — AI-Powered QA & Testing</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
   :root {
@@ -35,8 +36,9 @@
   h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
 
   nav { display: flex; align-items: center; gap: 16px; padding-block: 22px; }
-  .brand { font-family: var(--display); font-weight: 700; font-size: 22px; flex: 1; }
-  .brand span { font-family: var(--mono); font-size: 13px; color: var(--soft); margin-inline-start: 8px; font-weight: 500; }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 22px; flex: 1; display: flex; align-items: center; gap: 10px; }
+  .brand .logo { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; font-size: 16px; color: #fff; background: linear-gradient(135deg, #4f6bff, #7b5cff); flex-shrink: 0; }
+  .brand .tag { font-family: var(--mono); font-size: 13px; color: var(--soft); font-weight: 500; }
   .lang { font: 600 15px var(--body); background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 8px 16px; cursor: pointer; min-height: 44px; }
   .cta { display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; }
 
@@ -122,7 +124,7 @@
 
 <div class="wrap">
   <nav>
-    <div class="brand">Testopia<span>QA</span></div>
+    <div class="brand"><span class="logo">T</span>Testopia<span class="tag">QA</span></div>
     <button class="lang" id="langBtn" type="button"><span lang-en>العربية</span><span lang-ar>English</span></button>
     <a class="cta" href="#contact"><span lang-en>Request a quote</span><span lang-ar>اطلب عرض سعر</span></a>
   </nav>
