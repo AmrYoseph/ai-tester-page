@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Testopia: AI-powered QA & Business Analysis. Your user stories tested in a real browser, 64 automated checks, smoke tests, performance & load testing, API checks, and zero-cost regression.">
 <title>Testopia — AI-Powered QA & Testing</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
   :root {
@@ -37,7 +37,7 @@
 
   nav { display: flex; align-items: center; gap: 16px; padding-block: 22px; }
   .brand { font-family: var(--display); font-weight: 700; font-size: 22px; flex: 1; display: flex; align-items: center; gap: 10px; }
-  .brand .logo { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; font-size: 16px; color: #fff; background: linear-gradient(135deg, #4f6bff, #7b5cff); flex-shrink: 0; }
+  .brand .logo { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; font-size: 16px; color: #fff; background: linear-gradient(135deg, #8b7bef, #b54ee0 55%, #e901b7); flex-shrink: 0; }
   .brand .tag { font-family: var(--mono); font-size: 13px; color: var(--soft); font-weight: 500; }
   .lang { font: 600 15px var(--body); background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 8px 16px; cursor: pointer; min-height: 44px; }
   .cta { display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none; }
@@ -157,7 +157,7 @@
     <ol class="steps">
       <li><h3><span lang-en>You send the story</span><span lang-ar>تبعت الـ story</span></h3><p><span lang-en>A user story, acceptance criteria, a Jira/Azure DevOps ticket, or designs, Word, PDF and Excel files. A test login if pages need one.</span><span lang-ar>user story، أو acceptance criteria، أو تذكرة Jira/Azure DevOps، أو تصميمات وملفات Word وPDF وExcel. ومعاهم حساب تجريبي لو الصفحات محتاجة login.</span></p></li>
       <li><h3><span lang-en>AI writes and runs the tests</span><span lang-ar>الـ AI يكتب التستات ويشغّلها</span></h3><p><span lang-en>Every requirement gets its positive, negative and edge cases, run step by step in a real browser. Results are checked by the browser, not just the AI.</span><span lang-ar>كل requirement بياخد الحالات الإيجابية والسلبية والحدّية، وبتتشغل خطوة بخطوة في متصفح حقيقي. والنتيجة بيتأكد منها المتصفح، مش الـ AI بس.</span></p></li>
-      <li><h3><span lang-en>You get the report</span><span lang-ar>بيوصلك التقرير</span></h3><p><span lang-en>Excel and PDF by email: steps, expected vs. actual, screenshots, video and Playwright trace. Bugs can go straight to Jira or Azure DevOps.</span><span lang-ar>Excel وPDF على الإيميل: الخطوات، والمتوقع قصاد اللي حصل، وصور وفيديو وTrace للتستات. والـ bugs ممكن تتفتح على طول في Jira أو Azure DevOps.</span></p></li>
+      <li><h3><span lang-en>You get the report</span><span lang-ar>بيوصلك التقرير</span></h3><p><span lang-en>A shareable read-only link (no login needed), plus Excel and PDF by email: steps, expected vs. actual, screenshots, video and Playwright trace. Bugs go straight to your Jira or Azure DevOps board.</span><span lang-ar>لينك مشاركة مباشر للتقرير (من غير تسجيل دخول)، ومعاه Excel وPDF على الإيميل: الخطوات، والمتوقع قصاد اللي حصل، وصور وفيديو وTrace للتستات. والـ bugs بتتفتح على طول في مشروعك على Jira أو Azure DevOps.</span></p></li>
     </ol>
     <div class="video" id="videoBox" hidden>
       <video id="demoVideo" controls preload="metadata" playsinline aria-label="Testopia demo"></video>
@@ -167,11 +167,11 @@
   <section>
     <h2><span lang-en>What you get</span><span lang-ar>هتاخد إيه</span></h2>
     <div class="feat">
-      <div><h3><span lang-en>Business Analysis &amp; Excel Test Cases</span><span lang-ar>تحليل أعمال وإنشاء تست كيسز Excel</span></h3><p><span lang-en>BA assistant to review requirements, write user stories, acceptance criteria &amp; stakeholder questions, or turn any story directly into an Excel test sheet without a site.</span><span lang-ar>مساعد BA يراجع المتطلبات ويكتب user stories وacceptance criteria وأسئلة للـ stakeholders، أو يحوّل أي story لملف Excel بالتستات من غير موقع.</span></p></div>
+      <div><h3><span lang-en>Business Analysis &amp; Excel Test Cases</span><span lang-ar>تحليل أعمال وإنشاء تست كيسز Excel</span></h3><p><span lang-en>BA assistant to review requirements, write user stories, acceptance criteria &amp; stakeholder questions, or turn any story directly into a Testopia Excel test sheet without a site.</span><span lang-ar>مساعد BA يراجع المتطلبات ويكتب user stories وacceptance criteria وأسئلة للـ stakeholders، أو يحوّل أي story لملف Excel بالتستات من غير موقع.</span></p></div>
       <div><h3><span lang-en>Coverage you can check</span><span lang-ar>تغطية تقدر تراجعها</span></h3><p><span lang-en>Each test lists the requirement it covers, so gaps are visible before release. Or run your own pre-written Excel/Word/Gherkin test cases as-is.</span><span lang-ar>كل تست مكتوب جنبه الـ requirement اللي بيغطيه، فالناقص بيبان قبل الـ release. أو شغّل التستات اللي كتبتها بنفسك في ملف Excel أو Word زي ما هي.</span></p></div>
       <div><h3><span lang-en>64 Automated Checks, Smoke &amp; Performance</span><span lang-ar>64 فحص أوتوماتيك وSmoke وأداء</span></h3><p><span lang-en>No-AI toggleable checklist (security, SEO, links, forms, WCAG a11y), functional smoke tests, Core Web Vitals, and Load/Stress testing to find breaking points.</span><span lang-ar>64 فحص أوتوماتيك تقدر تقفل وتفتح أي واحد فيهم (أمان، SEO، لينكات، فورمز، Accessibility)، وSmoke test وظيفي، وCore Web Vitals، واختبار Load/Stress.</span></p></div>
       <div><h3><span lang-en>Zero-AI Regression, Self-Healing &amp; API</span><span lang-ar>Regression من غير AI وتصليح ذاتي وAPI</span></h3><p><span lang-en>Passing tests are recorded (or recorded by you) and replayed across desktop, mobile &amp; browsers with self-healing, visual diff, API checks, Postman import, and CI keys.</span><span lang-ar>التستات الناجحة بتتسجّل (أو تسجّلها بنفسك) وتتعاد من غير AI على الكمبيوتر والموبايل والمتصفحات، مع تصليح ذاتي وVisual regression وفحوصات API واستيراد Postman وربط CI.</span></p></div>
-      <div><h3><span lang-en>Isolated Client Workspaces</span><span lang-ar>مساحة مستقلة لكل عميل</span></h3><p><span lang-en>Dedicated workspaces per client with user roles (view-only or run), daily limits, monthly AI cost caps, and automatic daily encrypted backups.</span><span lang-ar>مساحة خاصة لكل عميل بصلاحيات للمستخدمين (مشاهدة بس أو تشغيل)، وحدود يومية، وحد تكلفة شهري، ونسخ احتياطي يومي تلقائي.</span></p></div>
+      <div><h3><span lang-en>Isolated Client Workspaces &amp; Shareable Reports</span><span lang-ar>مساحة مستقلة لكل عميل ولينكات مشاركة للتقارير</span></h3><p><span lang-en>Dedicated workspaces with per-client Jira &amp; Azure DevOps integration, 7-day public shareable report links, subscription/trial expiry management, daily quotas, monthly AI cost caps, and encrypted backups.</span><span lang-ar>مساحة خاصة لكل عميل بربط مستقل مع Jira وAzure DevOps، ولينكات مشاركة للتقارير (7 أيام من غير تسجيل دخول)، وإدارة فترة الاشتراك والتجربة، وحدود يومية وشهرية، ونسخ احتياطي يومي متشفّر.</span></p></div>
       <div><h3><span lang-en>Arabic and English</span><span lang-ar>عربي وإنجليزي</span></h3><p><span lang-en>Tests, UI, and exported reports (Excel, PDF, Markdown) in either language, with right-to-left sites handled properly.</span><span lang-ar>الواجهة والتستات والتقارير (Excel وPDF وMarkdown) بأي لغة من الاتنين، والمواقع اللي من اليمين للشمال بتتعامل صح.</span></p></div>
     </div>
   </section>
@@ -229,7 +229,7 @@
         </ul>
         <p>الملفات بتفضل سرية ومش بتتشارك، وأقصى حجم للملف 25 ميجا.</p>
         <h4>🔗 من Jira أو Azure DevOps</h4>
-        <p>لو ربطت البرنامج بـ Jira أو Azure DevOps، تكتب رقم الـ story (زي <code>PROJ-123</code> في Jira أو <code>4567</code> في Azure DevOps) وتدوس ⬇ اسحب المتطلبات. البرنامج بيجيب العنوان والوصف والـ acceptance criteria ويحطهم في الخانة، وأي bug يتفتح من الاختبار ده بيترتبط بالـ story.</p>
+        <p>لو ربطت مساحة العميل بـ Jira أو Azure DevOps، تكتب رقم الـ story (زي <code>PROJ-123</code> في Jira أو <code>4567</code> في Azure DevOps) وتدوس ⬇ اسحب المتطلبات. البرنامج بيجيب العنوان والوصف والـ acceptance criteria ويحطهم في الخانة، وأي bug يتفتح من الاختبار ده بيترتبط بالـ story.</p>
       </details>
 
       <details>
@@ -269,10 +269,11 @@
       </details>
 
       <details>
-        <summary>📄 التقرير ونتايج التستات</summary>
+        <summary>📄 التقرير ونتايج التستات + 🔗 لينكات المشاركة</summary>
         <ul>
           <li><b>فوق:</b> حالة الاختبار، والـ AI اللي اشتغل، وحالة تسجيل الدخول، وعداد ⏳ الوقت الفاضل، وزرار ⏹ إيقاف، وزرار ＋ اختبار جديد.</li>
           <li><b>الأرقام والتابات:</b> الصفحات، والمشاكل، وCritical/High، والـ test cases، وPassed، وFailed، ودقة الـ AI، وتابات Test Cases وIssues وPages وSmoke وPerformance مع فلاتر وبحث.</li>
+          <li><b>🔗 مشاركة التقرير بلينك مباشر (7 أيام):</b> زرار يطلّع لينك عام للقراءة فقط لأي تقرير، عشان المطورين أو فريق العميل يفتحوا التقرير التفاعلي والصور والفيديو والـ Exports من غير ما يحتاجوا حساب أو تسجيل دخول (مع إمكانية إلغاء اللينك في أي وقت).</li>
           <li><b>التصدير والعرض:</b> عرض التقرير للطباعة أو PDF، وتصدير Excel وCSV (بعمود Actual results ودعم كامل للعربي) وMarkdown وJSON.</li>
         </ul>
         <div class="tbl"><table>
@@ -292,7 +293,7 @@
             <ul>
               <li><b>✔ متأكد بالشروط:</b> حكم الـ AI والشروط متفقين.</li>
               <li><b>⚖ اتراجع:</b> مش متفقين، أو مفيش شروط تتفحص. هنا الـ AI (أو موديل مراجعة منفصل) بيراجع الحكم بنظرة تانية أدق على الـ screenshot الأخيرة ونتيجة الشروط.</li>
-              <li><b>⚠ مش متأكد:</b> المراجعة ما اشتغلتش، فالحكم فضل زي ما الـ AI قاله.</li>
+              <li><b>⚠ مش متأكد:</b> المراجعة ما اشتغلتلتش، فالحكم فضل زي ما الـ AI قاله.</li>
             </ul>
           </li>
           <li><b>التست اللي فشل بيتعاد مرة:</b> لو نجح في المرة التانية بيتعلّم Flaky 🔁 بدل Failed، ومش بيتحسب bug.</li>
@@ -303,20 +304,22 @@
       </details>
 
       <details>
-        <summary>🎬 فيديو وTrace لكل تست + 🐞 ربط Jira وAzure DevOps</summary>
+        <summary>🎬 فيديو وTrace لكل تست + 🐞 ربط Jira وAzure DevOps لكل عميل</summary>
         <ul>
           <li><b>فيديو وPlaywright Trace:</b> الفيديو بيشتغل جوه التقرير على طول، والـ Trace بيوريك كل خطوة: شكل الصفحة، والـ DOM، والـ network، والـ console. كل تست بيشتغل في نسخة معزولة من الـ session عشان يتسجّل لوحده.</li>
-          <li><b>🐞 bugs في Jira أو Azure DevOps:</b> جنب كل تست Failed زرار يفتح الـ bug بضغطة واحدة ومعاه الخطوات، والنتيجة المتوقعة والفعلية، والـ screenshot والفيديو كمرفقات، وربط بالـ story.</li>
+          <li><b>🐞 ربط Jira وAzure DevOps خاص بكل مساحة عميل:</b> كل عميل ليه إعدادات Jira Cloud أو Azure DevOps المستقلة بتاعته (بـ API Token / PAT متشفّر AES-256-GCM)، ويقدر يفتح الـ bug بضغطة واحدة ومعاه الخطوات والنتيجة المتوقعة والفعلية والـ screenshot والفيديو كمرفقات وربط بالـ story (مع التحويل التلقائي لـ Task لو نوع Bug مش متاح، وتعيين التذكرة تلقائيًا).</li>
         </ul>
       </details>
 
       <details>
-        <summary>👥 مساحات العملاء والأمان وخيارات التشغيل</summary>
+        <summary>👥 مساحات العملاء والاشتراكات والأمان وخيارات التشغيل</summary>
         <ul>
-          <li><b>مساحة (Workspace) لكل عميل:</b> كل عميل ليه مساحة معزولة تمامًا (فحوصاته وتقاريره وسويتاته وبياناته التجريبية). وكل مستخدم ليه صلاحية (مشاهدة بس، أو مشاهدة وتشغيل)، وحدود يومية، وحد تكلفة شهري، ونسخ احتياطي يومي تلقائي، وسلة محذوفات (7 أيام).</li>
+          <li><b>مساحة (Workspace) مستقلة لكل عميل:</b> كل عميل ليه مساحة معزولة تمامًا (فحوصاته وتقاريره وسويتاته وبياناته التجريبية وإعدادات Jira/Azure DevOps)، وصلاحيات للمستخدمين (مشاهدة بس، أو مشاهدة وتشغيل)، وحدود يومية، وحد تكلفة شهري، ونسخ احتياطي يومي تلقائي، وسلة محذوفات (7 أيام).</li>
+          <li><b>📅 إدارة فترة الاشتراك والتجربة (Expiry):</b> تقدر تحدد تاريخ انتهاء للاشتراك أو الفترة التجريبية لكل عميل؛ ولما بينتهي، المساحة بتتحول تلقائيًا لوضع المشاهدة فقط (عشان العميل يفضل يشوف تقاريره القديمة من غير ما يشغّل فحوصات جديدة لحد التجديد).</li>
+          <li><b>⏳ طابور تشغيل ذكي (Concurrency Queue):</b> لو أكتر من عميل شغّلوا فحوصات أو Suites في نفس الوقت، النظام بيرتبهم في طابور تلقائي عشان السيرفر يفضل سريع ومستقر.</li>
           <li><b>الوضع الآمن (الافتراضي):</b> المتصفح بيمنع أي طلب بيغيّر بيانات (POST/PUT/PATCH/DELETE)، وبيقفل زراير الإرسال والحذف والدفع، إلا لو فعلت "السماح بتغيير البيانات" على بيئة تجريبية.</li>
           <li><b>تسجيل الدخول المحفوظ:</b> بيسجل دخول مرة واحدة ويحفظ الـ session والباسورد متشفّر (AES-256-GCM)، ويدعم الدخول اللي على خطوتين وMicrosoft Entra ID، والتستات اللي محتاجة logout بتشتغل في session نضيفة لوحدها.</li>
-          <li><b>سريع وموفّر للتوكنز:</b> الـ AI بيخطط لحد 4 خطوات في طلب واحد، وبيبعت screenshot بس لو الصفحة اتغيرت، ويفحص الـ Accessibility بـ axe-core، ويوزّع الحمل تلقائيًا بين موديلات الـ AI مع fallback فوري.</li>
+          <li><b>اختيار سرعة ودقة الـ AI:</b> اختار بين وضع متوازن أو سريع أو شامل لكل مهمة، مع تخطيط لحد 4 خطوات في الطلب الواحد وتوزيع الحمل تلقائيًا بين موديلات الـ AI.</li>
         </ul>
       </details>
     </div>
@@ -343,7 +346,7 @@
         </ol>
         <ul>
           <li><b>Two-stage generation for full coverage:</b> First splits the input into numbered atomic acceptance criteria (AC-1, AC-2…) capturing every rule, role, state, and implied negative case. Then generates test cases in batches (happy path, negative cases, boundary values at/below/above limits, and edge cases) and removes duplicates.</li>
-          <li><b>Coverage matrix:</b> Shows every AC and the tests covering it, lets you download the Excel sheet, or send it straight to the scanner to run on a live site.</li>
+          <li><b>Coverage matrix:</b> Shows every AC and the tests covering it, lets you download the Testopia Excel workbook, or send it straight to the scanner to run on a live site.</li>
         </ul>
       </details>
 
@@ -370,7 +373,7 @@
           <li><b>Pre-written test sheets:</b> If an attached file already contains test cases (Steps / Expected result columns), Testopia automatically switches to "Run only the tests I wrote" mode and executes them as-is.</li>
         </ul>
         <h4>🔗 From Jira or Azure DevOps</h4>
-        <p>Type a story ID (e.g. <code>PROJ-123</code> in Jira or <code>4567</code> in Azure DevOps) to pull the title, description, and acceptance criteria automatically. Any bug opened from the run links back to the story.</p>
+        <p>Type a story ID (e.g. <code>PROJ-123</code> in Jira or <code>4567</code> in Azure DevOps) to pull the title, description, and acceptance criteria from the workspace's connected tracker. Any bug opened from the run links back to the story.</p>
       </details>
 
       <details>
@@ -409,10 +412,11 @@
       </details>
 
       <details>
-        <summary>📄 The Report &amp; Test Results</summary>
+        <summary>📄 The Report, Test Results &amp; 🔗 Shareable Links</summary>
         <ul>
           <li><b>At the top:</b> Run status, AI provider used, login status, ⏳ Time left countdown, ⏹ Stop button, and ＋ New test button.</li>
           <li><b>Numbers &amp; Tabs:</b> Pages, Issues, Critical/High, Test Cases, Passed, Failed, AI Accuracy, and tabs for Test Cases, Issues, Pages, Smoke, and Performance with search and filters.</li>
+          <li><b>🔗 Shareable Read-Only Links (7 days):</b> Generate a public read-only link for any report so developers, founders, or external stakeholders can view the full interactive report, screenshots, videos, and exports without logging in — revocable with one click.</li>
           <li><b>Export &amp; Print:</b> Printable popup report, plus Excel, CSV (with Actual results column and full Arabic support), Markdown, and JSON exports.</li>
         </ul>
         <div class="tbl"><table>
@@ -443,20 +447,22 @@
       </details>
 
       <details>
-        <summary>🎬 Video &amp; Trace for Every Test + 🐞 Jira &amp; Azure DevOps</summary>
+        <summary>🎬 Video &amp; Trace for Every Test + 🐞 Per-Workspace Jira &amp; Azure DevOps</summary>
         <ul>
           <li><b>Video &amp; Playwright Trace:</b> Watch the video right inside the report, or open the Playwright Trace at <code>trace.playwright.dev</code> to inspect every step's DOM snapshot, network call, and console log. Each test runs in an isolated copy of the logged-in session.</li>
-          <li><b>🐞 One-click bugs in Jira or Azure DevOps:</b> Open a bug for any Failed test (or all failed tests) with steps, expected vs. actual results, screenshot and video attachments, and automatic story linking.</li>
+          <li><b>🐞 Per-Workspace Jira &amp; Azure DevOps Integration:</b> Each client workspace connects to its own Jira Cloud or Azure DevOps project (with AES-256-GCM encrypted API tokens/PATs) to pull stories and file one-click bugs with steps, expected vs. actual results, screenshot and video attachments, automatic fallback to Task if Bug isn't on the screen, and auto-assignment.</li>
         </ul>
       </details>
 
       <details>
-        <summary>👥 Client Workspaces, Security &amp; Run Options</summary>
+        <summary>👥 Client Workspaces, Subscriptions, Security &amp; Run Options</summary>
         <ul>
-          <li><b>Isolated Client Workspaces:</b> Dedicated workspace per client with user permissions (view-only vs. view &amp; run), daily run/page quotas, monthly AI cost caps, 7-day trash recovery, and automatic daily backups.</li>
+          <li><b>Isolated Client Workspaces:</b> Dedicated workspace per client with user permissions (view-only vs. view &amp; run), per-workspace Jira/ADO settings, daily run/page quotas, monthly AI cost caps, 7-day trash recovery, and automatic daily backups.</li>
+          <li><b>📅 Subscription &amp; Trial Expiry Management:</b> Set an expiry date per client workspace; when a trial or subscription expires, the workspace automatically switches to read-only mode so the client keeps full access to historical reports while new runs pause until renewal.</li>
+          <li><b>⏳ Smart Concurrency Queue:</b> Queues simultaneous scans and suite runs across clients smoothly without overloading the server.</li>
           <li><b>Safe mode (default):</b> Blocks mutating requests (POST/PUT/PATCH/DELETE) and disables submit/delete/pay buttons unless "Allow data changes" is explicitly enabled for a staging environment.</li>
           <li><b>Saved encrypted sessions:</b> Logs in once, reuses the session, stores credentials encrypted (AES-256-GCM), handles two-step login &amp; Microsoft Entra ID, and runs logout tests in isolated sessions.</li>
-          <li><b>Fast &amp; token-efficient:</b> Plans up to 4 steps per AI call, sends screenshots only when the page changes, runs WCAG audits via axe-core, and load-balances across AI models with automatic fallback.</li>
+          <li><b>AI Speed &amp; Depth Modes:</b> Pick Balanced, Fast, or Thorough AI mode per task, planning up to 4 steps per call with automatic multi-model load-balancing and fallback.</li>
         </ul>
       </details>
     </div>
@@ -470,17 +476,17 @@
         <p><span lang-en>Before a launch or a big release.</span><span lang-ar>قبل إطلاق الموقع أو release كبير.</span></p>
         <ul>
           <li><span lang-en>Full site scan (64 checks + Smoke + AI) or specific stories</span><span lang-ar>فحص الموقع كامل (64 فحص + Smoke + AI) أو stories معينة</span></li>
-          <li><span lang-en>Requirements review, issues list &amp; test cases (Excel + PDF)</span><span lang-ar>مراجعة المتطلبات وقايمة المشاكل والتستات (Excel + PDF)</span></li>
+          <li><span lang-en>Interactive shareable report link (no login needed) + Excel &amp; PDF</span><span lang-ar>لينك تفاعلي لمشاركة التقرير (من غير تسجيل دخول) + Excel وPDF</span></li>
           <li><span lang-en>A walkthrough call on the results</span><span lang-ar>مكالمة نراجع فيها النتايج</span></li>
         </ul>
         <a class="price" href="#contact"><span lang-en>Request a quote →</span><span lang-ar>اطلب عرض سعر ←</span></a>
       </div>
       <div class="offer">
-        <h3><span lang-en>Monthly regression</span><span lang-ar>Regression شهري</span></h3>
+        <h3><span lang-en>Monthly regression &amp; workspace</span><span lang-ar>اشتراك شهري ومساحة خاصة</span></h3>
         <p><span lang-en>For teams that ship often.</span><span lang-ar>للفرق اللي بتنزّل تحديثات كتير.</span></p>
         <ul>
-          <li><span lang-en>A dedicated workspace &amp; test suite run on a schedule or CI</span><span lang-ar>مساحة خاصة وtest suite لموقعك بتتشغل بمواعيد أو مع الـ CI</span></li>
-          <li><span lang-en>Results (Excel + PDF) by email, Teams or Slack after every run</span><span lang-ar>النتيجة (Excel + PDF) على الإيميل أو Teams أو Slack بعد كل تشغيل</span></li>
+          <li><span lang-en>Dedicated client workspace connected to your Jira or Azure DevOps</span><span lang-ar>مساحة خاصة لموقعك مربوطة بمشروعك على Jira أو Azure DevOps</span></li>
+          <li><span lang-en>Scheduled or CI-triggered regression suites + instant shareable reports</span><span lang-ar>تشغيل بمواعيد أو مع الـ CI + تقارير على الإيميل أو Teams أو Slack ولينكات مشاركة</span></li>
           <li><span lang-en>New tests, BA review &amp; API/visual checks for every new story</span><span lang-ar>تستات جديدة ومراجعة متطلبات وفحوصات API لكل story جديدة</span></li>
         </ul>
         <a class="price" href="#contact"><span lang-en>Request a quote →</span><span lang-ar>اطلب عرض سعر ←</span></a>
