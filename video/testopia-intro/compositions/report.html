@@ -16,7 +16,7 @@
   </style>
   <div id="root" data-composition-id="report" data-width="1920" data-height="1080">
     <div class="glow"></div>
-    <div id="report-c" class="clip wrap" data-start="0" data-duration="6.6">
+    <div id="report-c" class="clip wrap" data-start="0" data-duration="7.45">
       <h1 data-a="t" style="font-size:66px"><em>أرقام واضحة</em>، وصور وفيديو وتتبّع لكل اختبار،<br>وتقدر تشاركه <em>برابط للقراءة فقط</em> مع أي حد</h1>
       <div class="row" style="gap:36px">
         <div class="card nm" style="padding:30px 48px;text-align:center"><div class="mono pass" style="font-size:100px;font-weight:700">42</div><div style="font-size:30px">ناجح</div></div>
@@ -34,7 +34,7 @@
     const tl = gsap.timeline({ paused: true });
     const q = s => "#root [data-a='" + s + "']";
 tl.from("#root [data-a='t']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 0.1);tl.from("#root .nm", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.2 }, 1.0);tl.from("#root .ev", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.3 }, 2.2);
-    tl.to("#report-c > *", { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.03 }, 6.6 - 0.5);
+    tl.to("#report-c > *", { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.03 }, 7.45 - 0.5);
     window.__timelines["report"] = tl;
     })();
   </script>

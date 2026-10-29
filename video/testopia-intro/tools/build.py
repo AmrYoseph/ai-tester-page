@@ -45,21 +45,26 @@ def scene(sid, dur, body, js):
 IN = 'tl.from({sel}, {{ opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: {st} }}, {t});'
 def into(sel, t, st=0.12): return IN.format(sel=json.dumps(sel), t=t, st=st)
 
+import subprocess
+def vo_len(k): return float(subprocess.run(["ffprobe","-v","error","-show_entries","format=duration","-of","csv=p=0",f"{ROOT}/assets/vo/{k}.wav"],capture_output=True,text=True).stdout)
+VO_IN = 0.35  # voice starts this long after each scene cut
+DUR = {k: round(max(d, vo_len(k) + VO_IN + 0.75), 2) for k, d in
+       {"hook":4.6,"excel":6.6,"replay":8.6,"verify":5.2,"report":6.6,"integrate":5.6,"cta":5.8}.items()}
 S = []  # (id, duration)
 
 # 1 — hook
-S.append(("hook", 4.6))
-scene("hook", 4.6, """      <div class="row" data-a="brand" style="margin-top:60px"><div class="logo">T</div><div style="font:700 64px Inter,sans-serif;direction:ltr">Testopia</div></div>
+S.append(("hook", DUR["hook"]))
+scene("hook", DUR["hook"], """      <div class="row" data-a="brand" style="margin-top:60px"><div class="logo">T</div><div style="font:700 64px Inter,sans-serif;direction:ltr">Testopia</div></div>
       <h1 data-a="t">فريق تستنج كامل <em>بالذكاء الاصطناعي</em>..<br>يشتغل في متصفح حقيقي</h1>
       <div class="card row mono" data-a="bar" style="padding:22px 34px;font-size:30px;color:#a3a9b5;width:900px;justify-content:flex-end">
         <span>https://your-app.com/login</span><span style="width:22px;height:22px;border-radius:50%;background:#5fd49a;display:inline-block"></span></div>""",
   into("#root [data-a='t']", 0.1) + into("#root [data-a='bar']", 1.0))
 
 # 2 — story to Excel
-S.append(("excel", 6.6))
+S.append(("excel", DUR["excel"]))
 rows = [("TC-001","إيجابي","pass","تسجيل دخول ببيانات صحيحة"),("TC-002","سلبي","fail","باسورد غلط بيطلّع رسالة خطأ"),("TC-003","Edge","block","إيميل بمسافات زيادة"),("TC-004","سلبي","fail","حقل فاضي")]
 rh = "".join(f'<div class="row er" style="padding:18px 32px;border-top:2px solid #2a2f38;font-size:32px"><span class="mono" style="color:#a3a9b5;width:170px">{a}</span><span class="{c}" style="width:150px;font-weight:700">{b}</span><span>{d}</span></div>' for a,b,c,d in rows)
-scene("excel", 6.6, f"""      <h1 data-a="t">ابعتلي <em>ستوري</em> أو جزء من الريكوايرمنت..<br>واستلم ملف <em>إكسل</em> بتستات إيجابية وسلبية وإيدج كيسز</h1>
+scene("excel", DUR["excel"], f"""      <h1 data-a="t">ابعتلي <em>ستوري</em> أو جزء من الريكوايرمنت..<br>واستلم ملف <em>إكسل</em> بتستات إيجابية وسلبية وإيدج كيسز</h1>
       <div class="row" style="gap:48px;align-items:stretch">
         <div class="card" data-a="story" style="padding:34px;width:520px;font-size:30px;line-height:1.6"><div style="color:#7ea2ff;font-weight:700">User Story</div>كمستخدم، عايز أسجّل دخول بالإيميل والباسورد</div>
         <div data-a="arrow" style="font-size:80px;color:#7ea2ff;align-self:center">←</div>
@@ -68,10 +73,10 @@ scene("excel", 6.6, f"""      <h1 data-a="t">ابعتلي <em>ستوري</em> أ
   into("#root [data-a='t']", 0.1) + into("#root [data-a='story']", 0.8) + into("#root [data-a='arrow']", 1.3) + into("#root [data-a='sheet']", 1.6) + into("#root .er", 2.0, 0.25))
 
 # 3 — executed, recorded, replayed without AI
-S.append(("replay", 8.6))
+S.append(("replay", DUR["replay"]))
 steps = ["افتح /login","اكتب الإيميل","اكتب باسورد غلط","اضغط دخول","تأكد من رسالة الخطأ"]
 sh = "".join(f'<div class="row st" style="font-size:32px;padding:12px 0"><span class="pass">✓</span><span>{s}</span></div>' for s in steps)
-scene("replay", 8.6, f"""      <h1 data-a="t" style="font-size:66px">كل سيناريو <em>بيتنفّذ فعلاً</em>، والناجح بيتسجّل ويتعاد<br>في الريجريشن <em>من غير ذكاء اصطناعي</em> عشان توفر توكنز</h1>
+scene("replay", DUR["replay"], f"""      <h1 data-a="t" style="font-size:66px">كل سيناريو <em>بيتنفّذ فعلاً</em>، والناجح بيتسجّل ويتعاد<br>في الريجريشن <em>من غير ذكاء اصطناعي</em> عشان توفر توكنز</h1>
       <div class="row" style="gap:48px;align-items:stretch">
         <div class="card" data-a="run" style="padding:30px 40px;width:760px">{sh}</div>
         <div style="display:flex;flex-direction:column;gap:30px;flex:1">
@@ -86,8 +91,8 @@ scene("replay", 8.6, f"""      <h1 data-a="t" style="font-size:66px">كل سين
     tl.to(tk, { v: 0, duration: 1.6, ease: "power2.inOut", onUpdate: () => { const e = document.querySelector("#tokn"); if (e) e.textContent = Math.round(tk.v).toLocaleString("en-US"); } }, 5.8);""")
 
 # 4 — double-checked with evidence
-S.append(("verify", 5.2))
-scene("verify", 5.2, """      <h1 data-a="t">كل تست <em>بيتراجع مرتين</em> ويحتاج <em>دليل</em>..<br>فنقلّل النجاح والفشل الفلاكي</h1>
+S.append(("verify", DUR["verify"]))
+scene("verify", DUR["verify"], """      <h1 data-a="t">كل تست <em>بيتراجع مرتين</em> ويحتاج <em>دليل</em>..<br>فنقلّل النجاح والفشل الفلاكي</h1>
       <div class="row" style="gap:40px">
         <div class="card ck" style="padding:40px 50px;font-size:38px;font-weight:700"><span class="pass">✓</span> مراجعة 1 — المتصفح</div>
         <div class="card ck" style="padding:40px 50px;font-size:38px;font-weight:700"><span class="pass">✓</span> مراجعة 2 — الدليل</div>
@@ -96,8 +101,8 @@ scene("verify", 5.2, """      <h1 data-a="t">كل تست <em>بيتراجع مر
   into("#root [data-a='t']", 0.1) + into("#root .ck", 1.0, 0.6))
 
 # 5 — numbers, evidence, read-only link
-S.append(("report", 6.6))
-scene("report", 6.6, """      <h1 data-a="t" style="font-size:66px"><em>أرقام واضحة</em>، وصور وفيديو وتتبّع لكل اختبار،<br>وتقدر تشاركه <em>برابط للقراءة فقط</em> مع أي حد</h1>
+S.append(("report", DUR["report"]))
+scene("report", DUR["report"], """      <h1 data-a="t" style="font-size:66px"><em>أرقام واضحة</em>، وصور وفيديو وتتبّع لكل اختبار،<br>وتقدر تشاركه <em>برابط للقراءة فقط</em> مع أي حد</h1>
       <div class="row" style="gap:36px">
         <div class="card nm" style="padding:30px 48px;text-align:center"><div class="mono pass" style="font-size:100px;font-weight:700">42</div><div style="font-size:30px">ناجح</div></div>
         <div class="card nm" style="padding:30px 48px;text-align:center"><div class="mono fail" style="font-size:100px;font-weight:700">3</div><div style="font-size:30px">فاشل</div></div>
@@ -110,8 +115,8 @@ scene("report", 6.6, """      <h1 data-a="t" style="font-size:66px"><em>أرقا
   into("#root [data-a='t']", 0.1) + into("#root .nm", 1.0, 0.2) + into("#root .ev", 2.2, 0.3))
 
 # 6 — integrations, export, self-heal
-S.append(("integrate", 5.6))
-scene("integrate", 5.6, """      <h1 data-a="t">تكامل مع <em>أدوات التتبّع</em>، وتصدير مشروع جاهز،<br>مع <em>إصلاح ذاتي</em> للاختبارات بالذكاء الاصطناعي</h1>
+S.append(("integrate", DUR["integrate"]))
+scene("integrate", DUR["integrate"], """      <h1 data-a="t">تكامل مع <em>أدوات التتبّع</em>، وتصدير مشروع جاهز،<br>مع <em>إصلاح ذاتي</em> للاختبارات بالذكاء الاصطناعي</h1>
       <div class="row" style="gap:30px">
         <span class="chip ig">Jira</span><span class="chip ig">Azure DevOps</span><span class="chip ig">📦 Playwright project</span>
       </div>
@@ -120,8 +125,8 @@ scene("integrate", 5.6, """      <h1 data-a="t">تكامل مع <em>أدوات �
   into("#root [data-a='t']", 0.1) + into("#root .ig", 1.0, 0.3))
 
 # 7 — CTA
-S.append(("cta", 5.8))
-scene("cta", 5.8, """      <div class="row" data-a="brand" style="margin-top:80px"><div class="logo">T</div><div style="font:700 64px Inter,sans-serif;direction:ltr">Testopia</div></div>
+S.append(("cta", DUR["cta"]))
+scene("cta", DUR["cta"], """      <div class="row" data-a="brand" style="margin-top:80px"><div class="logo">T</div><div style="font:700 64px Inter,sans-serif;direction:ltr">Testopia</div></div>
       <h1 data-a="t" style="font-size:96px"><em>أول فحص مجاني</em></h1>
       <div data-a="s" style="font-size:52px;color:#a3a9b5">ابعتلي ستوري أو رابط موقع تجريبي</div>
       <div class="chip mono" data-a="u" style="font-size:36px;align-self:flex-start">amryoseph.github.io/ai-tester-page</div>""",
@@ -131,6 +136,7 @@ scene("cta", 5.8, """      <div class="row" data-a="brand" style="margin-top:80p
 t = 0; hosts = []
 for i, (sid, d) in enumerate(S):
     hosts.append(f'      <div id="{sid}" data-composition-id="{sid}" data-composition-src="compositions/{sid}.html" data-start="{round(t,2)}" data-duration="{d}" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:{i+1}"></div>')
+    hosts.append(f'      <audio id="vo-{sid}" class="clip" src="assets/vo/{sid}.wav" data-start="{round(t+VO_IN,2)}" data-duration="{round(vo_len(sid),2)}" data-track-index="2" data-volume="1"></audio>')
     t += d
 total = round(t, 2)
 open(f"{ROOT}/index.html", "w").write(f"""<!doctype html>
