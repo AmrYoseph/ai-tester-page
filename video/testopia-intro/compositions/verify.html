@@ -16,7 +16,7 @@
   </style>
   <div id="root" data-composition-id="verify" data-width="1920" data-height="1080">
     <div class="glow"></div>
-    <div id="verify-c" class="clip wrap" data-start="0" data-duration="5.88">
+    <div id="verify-c" class="clip wrap" data-start="0" data-duration="7.45">
       <h1 data-a="t">كل تست <em>بيتراجع مرتين</em> ويحتاج <em>دليل</em>..<br>فنقلّل النجاح والفشل الفلاكي</h1>
       <div class="row" style="gap:40px">
         <div class="card ck" style="padding:40px 50px;font-size:38px;font-weight:700"><span class="pass">✓</span> مراجعة 1 — المتصفح</div>
@@ -30,7 +30,7 @@
     const tl = gsap.timeline({ paused: true });
     const q = s => "#root [data-a='" + s + "']";
 tl.from("#root [data-a='t']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 0.1);tl.from("#root .ck", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.6 }, 1.0);
-    tl.to("#verify-c > *", { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.03 }, 5.88 - 0.5);
+    tl.to("#verify-c > *", { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.03 }, 7.45 - 0.5);
     window.__timelines["verify"] = tl;
     })();
   </script>
