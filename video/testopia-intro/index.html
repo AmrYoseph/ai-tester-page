@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/js/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #101216; }
+      #root { position: relative; width: 100%; height: 100%; }
+      #root > div { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="43.0" data-width="1920" data-height="1080">
+      <div id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0" data-duration="4.6" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:1"></div>
+      <div id="excel" data-composition-id="excel" data-composition-src="compositions/excel.html" data-start="4.6" data-duration="6.6" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:2"></div>
+      <div id="replay" data-composition-id="replay" data-composition-src="compositions/replay.html" data-start="11.2" data-duration="8.6" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:3"></div>
+      <div id="verify" data-composition-id="verify" data-composition-src="compositions/verify.html" data-start="19.8" data-duration="5.2" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:4"></div>
+      <div id="report" data-composition-id="report" data-composition-src="compositions/report.html" data-start="25.0" data-duration="6.6" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:5"></div>
+      <div id="integrate" data-composition-id="integrate" data-composition-src="compositions/integrate.html" data-start="31.6" data-duration="5.6" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:6"></div>
+      <div id="cta" data-composition-id="cta" data-composition-src="compositions/cta.html" data-start="37.2" data-duration="5.8" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:7"></div>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

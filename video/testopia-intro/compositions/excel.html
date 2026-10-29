@@ -1,0 +1,37 @@
+<template>
+  <style>
+@font-face{font-family:'IBM Plex Sans Arabic';font-weight:400;src:url('assets/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2') format('woff2');}
+@font-face{font-family:'IBM Plex Sans Arabic';font-weight:700;src:url('assets/fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2') format('woff2');}
+#root{position:absolute;inset:0;background:#101216;color:#eceef2;font-family:'IBM Plex Sans Arabic','Inter',sans-serif;direction:rtl;overflow:hidden}
+#root .glow{position:absolute;width:1400px;height:1400px;border-radius:50%;background:radial-gradient(circle,rgba(126,162,255,.16),rgba(181,78,224,.06) 45%,transparent 70%);left:260px;top:-300px}
+#root .wrap{position:absolute;inset:0;padding:120px 160px;display:flex;flex-direction:column;gap:56px}
+#root h1{font-size:76px;line-height:1.35;font-weight:700;max-width:1600px}
+#root h1 em{font-style:normal;color:#7ea2ff}
+#root .card{background:#171a20;border:2px solid #2a2f38;border-radius:24px}
+#root .chip{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;border-radius:999px;background:#1b2440;color:#eceef2;font-size:36px;font-weight:700}
+#root .pass{color:#5fd49a}#root .fail{color:#ff8a80}#root .block{color:#f2b65e}
+#root .mono{font-family:'JetBrains Mono',monospace;direction:ltr}
+#root .row{display:flex;gap:28px;align-items:center}
+#root .logo{width:120px;height:120px;border-radius:30px;background:linear-gradient(135deg,#8b7bef,#b54ee0 55%,#e901b7);display:flex;align-items:center;justify-content:center;font:900 72px Inter,sans-serif;color:#fff}
+  </style>
+  <div id="root" data-composition-id="excel" data-width="1920" data-height="1080">
+    <div class="glow"></div>
+    <div id="excel-c" class="clip wrap" data-start="0" data-duration="6.6">
+      <h1 data-a="t">ابعتلي <em>ستوري</em> أو جزء من الريكوايرمنت..<br>واستلم ملف <em>إكسل</em> بتستات إيجابية وسلبية وإيدج كيسز</h1>
+      <div class="row" style="gap:48px;align-items:stretch">
+        <div class="card" data-a="story" style="padding:34px;width:520px;font-size:30px;line-height:1.6"><div style="color:#7ea2ff;font-weight:700">User Story</div>كمستخدم، عايز أسجّل دخول بالإيميل والباسورد</div>
+        <div data-a="arrow" style="font-size:80px;color:#7ea2ff;align-self:center">←</div>
+        <div class="card" data-a="sheet" style="flex:1;overflow:hidden"><div class="row" style="padding:18px 32px;background:#1f7a51;font-size:30px;font-weight:700">test-cases.xlsx</div><div class="row er" style="padding:18px 32px;border-top:2px solid #2a2f38;font-size:32px"><span class="mono" style="color:#a3a9b5;width:170px">TC-001</span><span class="pass" style="width:150px;font-weight:700">إيجابي</span><span>تسجيل دخول ببيانات صحيحة</span></div><div class="row er" style="padding:18px 32px;border-top:2px solid #2a2f38;font-size:32px"><span class="mono" style="color:#a3a9b5;width:170px">TC-002</span><span class="fail" style="width:150px;font-weight:700">سلبي</span><span>باسورد غلط بيطلّع رسالة خطأ</span></div><div class="row er" style="padding:18px 32px;border-top:2px solid #2a2f38;font-size:32px"><span class="mono" style="color:#a3a9b5;width:170px">TC-003</span><span class="block" style="width:150px;font-weight:700">Edge</span><span>إيميل بمسافات زيادة</span></div><div class="row er" style="padding:18px 32px;border-top:2px solid #2a2f38;font-size:32px"><span class="mono" style="color:#a3a9b5;width:170px">TC-004</span><span class="fail" style="width:150px;font-weight:700">سلبي</span><span>حقل فاضي</span></div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+    const tl = gsap.timeline({ paused: true });
+    const q = s => "#root [data-a='" + s + "']";
+tl.from("#root [data-a='t']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 0.1);tl.from("#root [data-a='story']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 0.8);tl.from("#root [data-a='arrow']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 1.3);tl.from("#root [data-a='sheet']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 1.6);tl.from("#root .er", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.25 }, 2.0);
+    tl.to("#excel-c > *", { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.03 }, 6.6 - 0.5);
+    window.__timelines["excel"] = tl;
+    })();
+  </script>
+</template>

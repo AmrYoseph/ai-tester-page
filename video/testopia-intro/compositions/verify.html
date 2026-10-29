@@ -1,0 +1,37 @@
+<template>
+  <style>
+@font-face{font-family:'IBM Plex Sans Arabic';font-weight:400;src:url('assets/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2') format('woff2');}
+@font-face{font-family:'IBM Plex Sans Arabic';font-weight:700;src:url('assets/fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2') format('woff2');}
+#root{position:absolute;inset:0;background:#101216;color:#eceef2;font-family:'IBM Plex Sans Arabic','Inter',sans-serif;direction:rtl;overflow:hidden}
+#root .glow{position:absolute;width:1400px;height:1400px;border-radius:50%;background:radial-gradient(circle,rgba(126,162,255,.16),rgba(181,78,224,.06) 45%,transparent 70%);left:260px;top:-300px}
+#root .wrap{position:absolute;inset:0;padding:120px 160px;display:flex;flex-direction:column;gap:56px}
+#root h1{font-size:76px;line-height:1.35;font-weight:700;max-width:1600px}
+#root h1 em{font-style:normal;color:#7ea2ff}
+#root .card{background:#171a20;border:2px solid #2a2f38;border-radius:24px}
+#root .chip{display:inline-flex;align-items:center;gap:14px;padding:16px 30px;border-radius:999px;background:#1b2440;color:#eceef2;font-size:36px;font-weight:700}
+#root .pass{color:#5fd49a}#root .fail{color:#ff8a80}#root .block{color:#f2b65e}
+#root .mono{font-family:'JetBrains Mono',monospace;direction:ltr}
+#root .row{display:flex;gap:28px;align-items:center}
+#root .logo{width:120px;height:120px;border-radius:30px;background:linear-gradient(135deg,#8b7bef,#b54ee0 55%,#e901b7);display:flex;align-items:center;justify-content:center;font:900 72px Inter,sans-serif;color:#fff}
+  </style>
+  <div id="root" data-composition-id="verify" data-width="1920" data-height="1080">
+    <div class="glow"></div>
+    <div id="verify-c" class="clip wrap" data-start="0" data-duration="5.2">
+      <h1 data-a="t">كل تست <em>بيتراجع مرتين</em> ويحتاج <em>دليل</em>..<br>فنقلّل النجاح والفشل الفلاكي</h1>
+      <div class="row" style="gap:40px">
+        <div class="card ck" style="padding:40px 50px;font-size:38px;font-weight:700"><span class="pass">✓</span> مراجعة 1 — المتصفح</div>
+        <div class="card ck" style="padding:40px 50px;font-size:38px;font-weight:700"><span class="pass">✓</span> مراجعة 2 — الدليل</div>
+        <div class="chip ck" style="font-size:40px;padding:26px 44px;background:#123826"><span class="pass">Passed</span> مؤكد</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+    const tl = gsap.timeline({ paused: true });
+    const q = s => "#root [data-a='" + s + "']";
+tl.from("#root [data-a='t']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 0.1);tl.from("#root .ck", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.6 }, 1.0);
+    tl.to("#verify-c > *", { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.03 }, 5.2 - 0.5);
+    window.__timelines["verify"] = tl;
+    })();
+  </script>
+</template>
