@@ -16,7 +16,7 @@
   </style>
   <div id="root" data-composition-id="replay" data-width="1920" data-height="1080">
     <div class="glow"></div>
-    <div id="replay-c" class="clip wrap" data-start="0" data-duration="9.18">
+    <div id="replay-c" class="clip wrap" data-start="0" data-duration="9.59">
       <h1 data-a="t" style="font-size:66px">كل سيناريو <em>بيتنفّذ فعلاً</em>، والناجح بيتسجّل ويتعاد<br>في الريجريشن <em>من غير ذكاء اصطناعي</em> عشان توفر توكنز</h1>
       <div class="row" style="gap:48px;align-items:stretch">
         <div class="card" data-a="run" style="padding:30px 40px;width:760px"><div class="row st" style="font-size:32px;padding:12px 0"><span class="pass">✓</span><span>افتح /login</span></div><div class="row st" style="font-size:32px;padding:12px 0"><span class="pass">✓</span><span>اكتب الإيميل</span></div><div class="row st" style="font-size:32px;padding:12px 0"><span class="pass">✓</span><span>اكتب باسورد غلط</span></div><div class="row st" style="font-size:32px;padding:12px 0"><span class="pass">✓</span><span>اضغط دخول</span></div><div class="row st" style="font-size:32px;padding:12px 0"><span class="pass">✓</span><span>تأكد من رسالة الخطأ</span></div></div>
@@ -35,7 +35,7 @@
 tl.from("#root [data-a='t']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 0.1);tl.from("#root [data-a='run']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 0.9);tl.from("#root .st", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.45 }, 1.2);tl.from("#root [data-a='rec']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 3.6);tl.from("#root [data-a='rep']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 4.4);tl.from("#root [data-a='tok']", { opacity: 0, y: 40, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 5.0);
     const tk = { v: 12480 };
     tl.to(tk, { v: 0, duration: 1.6, ease: "power2.inOut", onUpdate: () => { const e = document.querySelector("#tokn"); if (e) e.textContent = Math.round(tk.v).toLocaleString("en-US"); } }, 5.8);
-    tl.to("#replay-c > *", { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.03 }, 9.18 - 0.5);
+    tl.to("#replay-c > *", { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.03 }, 9.59 - 0.5);
     window.__timelines["replay"] = tl;
     })();
   </script>
